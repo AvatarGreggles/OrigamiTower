@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Mana
+  - Deadzone
   layers:
   - Default
   - TransparentFX
@@ -44,6 +46,12 @@ TagManager:
   - name: Background
     uniqueID: 2051962921
     locked: 0
+  - name: Tower
+    uniqueID: 1166521669
+    locked: 0
   - name: Player
     uniqueID: 108195543
+    locked: 0
+  - name: Collectibles
+    uniqueID: 3113798381
     locked: 0

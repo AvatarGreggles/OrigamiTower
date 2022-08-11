@@ -16,12 +16,20 @@ public class CraneController : MonoBehaviour
     float flapBufferTimer = 0;
     [SerializeField] bool canFlap = true;
 
+    [SerializeField] bool isFalling = false;
+
+    [SerializeField] float originalGravity = 0.5f;
+
+    Animator animator;
 
     // Use this for initialization
     void Start()
     {
 
         theRB = GetComponent<Rigidbody2D>();
+        theRB.gravityScale = originalGravity;
+
+        animator = GetComponent<Animator>();
 
         // Fly towards the right
         theRB.velocity = Vector2.right * speed;
@@ -30,15 +38,35 @@ public class CraneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.instance.isGameActive)
+        {
+            HandleMovemet();
 
-        HandleMovemet();
-        HandleFlap();
+            if (GameManager.instance.isFreefalling)
+            {
+                HandleFreefall();
+            }
+            else
+            {
+                HandleFlap();
+            }
+        }
+    }
 
+    void HandleFreefall()
+    {
+        theRB.gravityScale = originalGravity / 1.5f;
+        theRB.velocity = new Vector2(theRB.velocity.x, -1f);
 
+        //For playing the animation
+        animator.enabled = false;
     }
 
     void HandleFlap()
     {
+        animator.enabled = true;
+        theRB.gravityScale = originalGravity;
+
         // Limit flap
         if (flapBufferTimer > 0)
         {
@@ -52,6 +80,8 @@ public class CraneController : MonoBehaviour
         // Flap
         if (Input.GetKeyDown(KeyCode.Space) && canFlap)
         {
+
+            GameManager.instance.DecreaseMana(GameManager.instance.manaFlapRate);
             theRB.velocity = Vector2.zero;
             theRB.AddForce(Vector2.up * force);
             flapBufferTimer = flapBuffer;
@@ -81,6 +111,21 @@ public class CraneController : MonoBehaviour
         else
         {
             // Do somethinng
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Mana")
+        {
+            GameManager.instance.IncreaseMana(20);
+            GameManager.instance.isFreefalling = false;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Deadzone")
+        {
+            GameManager.instance.LoseGame();
         }
     }
 }
