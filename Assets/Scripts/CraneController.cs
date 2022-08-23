@@ -77,10 +77,10 @@ public class CraneController : MonoBehaviour
             canFlap = true;
         }
 
+
         // Flap
         if (Input.GetKeyDown(KeyCode.Space) && canFlap)
         {
-
             GameManager.instance.DecreaseMana(GameManager.instance.manaFlapRate);
             theRB.velocity = Vector2.zero;
             theRB.AddForce(Vector2.up * force);
@@ -118,9 +118,9 @@ public class CraneController : MonoBehaviour
     {
         if (other.gameObject.tag == "Mana")
         {
-            GameManager.instance.IncreaseMana(20);
+            other.gameObject.GetComponent<ManaController>().PickUp();
             GameManager.instance.isFreefalling = false;
-            Destroy(other.gameObject);
+            // Destroy(other.gameObject);
         }
 
         if (other.gameObject.tag == "Deadzone")

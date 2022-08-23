@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 8640882793865960134}
   - component: {fileID: 8640882793865960135}
   - component: {fileID: 6575068749925518984}
-  - component: {fileID: 4733809082533052855}
+  - component: {fileID: 5928155240237155818}
   m_Layer: 0
-  m_Name: Mana
-  m_TagString: Mana
+  m_Name: Bullet
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -458800186, guid: 06e0b2fce072c439587ec0c101d324d7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9811321, g: 0.26379493, b: 0.26379493, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -136,18 +136,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa762930b87c34d0c99d6a00bdad9353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -0.0075
-  target: 3
---- !u!114 &4733809082533052855
-MonoBehaviour:
+  speed: 4
+  target: 1
+--- !u!50 &5928155240237155818
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8640882793865960152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5692fb5f590fb4db2a99876e30110335, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manaAmount: 20
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0

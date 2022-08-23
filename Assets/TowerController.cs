@@ -7,9 +7,6 @@ public class TowerController : MonoBehaviour
     public static TowerController instance;
     public float speed = 0.5f;
 
-    private float moveTimer = 0;
-    [SerializeField] float moveDelay = 0.5f;
-
     private float start = 0;
     private Vector2 offset = new Vector2(0, 0);
     private Material material;
