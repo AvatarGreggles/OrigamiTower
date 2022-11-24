@@ -58,8 +58,9 @@ public class CraneController : MonoBehaviour
         theRB.gravityScale = originalGravity / 1.5f;
         theRB.velocity = new Vector2(theRB.velocity.x, -1f);
 
-        //For playing the animation
         animator.enabled = false;
+
+        //For playing the animation
     }
 
     void HandleFlap()
@@ -81,6 +82,7 @@ public class CraneController : MonoBehaviour
         // Flap
         if (Input.GetKeyDown(KeyCode.Space) && canFlap)
         {
+            animator.SetTrigger("isFlapping");
             GameManager.instance.DecreaseMana(GameManager.instance.manaFlapRate);
             theRB.velocity = Vector2.zero;
             theRB.AddForce(Vector2.up * force);
